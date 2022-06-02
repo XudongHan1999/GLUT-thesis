@@ -1,0 +1,128 @@
+\section{非线性 Schr\"odinger 方程}
+\label{sec:NLSE}
+\subsection{介电响应}
+
+根据 Maxwell 电磁理论，光在光纤中的传输可以用波动方程描述
+\begin{equation}
+    \nabla^2\vec{E}-\frac{1}{c^2}\frac{\partial^2\vec{E}}{\partial t^2}-\mu_0\frac{\partial^2\vec{P}}{\partial t^2}=\vec{0}\\
+\end{equation}
+
+光纤的主要材料是熔融 \ce{SiO_2} 合成的纯石英玻璃，该电介质对光波的介电响应 $\vec{P}(\omega)$ 与光波频率 $\omega$ 有关。光纤的这一特性就是色散效应，最终导致光脉冲不同的频率分量以不同的速度传输。因此在频域中讨论光波问题会更方便，对波动方程进行 Fourier 变换得到三个分量的 Helmholtz 方程
+\begin{equation}
+    \nabla^2\widetilde{\vec{E}}(\vec{r},\omega)+\varepsilon_r(\omega)\frac{\omega^2}{c^2}\widetilde{\vec{E}}(\vec{r},\omega)=\vec{0}
+\end{equation}
+
+短脉冲（脉宽范围约为 10 fs $\sim$ 10 ns）在光纤中传输时，介质对高强度光场的响应是非线性的，通常情况下极化强度 $\vec{P}$ 与电场 $\vec{E}$ 的关系为
+\begin{equation}
+    \vec{P}=\varepsilon_0\left(\chi^{(1)}\cdot\vec{E}+\chi^{(2)}:\vec{E}\vec{E}+\chi^{(3)}\vdots\vec{E}\vec{E}\vec{E}+\cdots\right)    
+\end{equation}
+其中，线性极化率 $\chi^{(1)}$ 对介电响应起主要作用，影响光纤的折射率 $n$ 和衰减系数 $\alpha$；由于 \ce{SiO_2} 为对称分子，光纤中的二阶极化率 $\chi^{(2)}=0$；三阶极化率 $\chi^{(3)}$ 及更高阶的极化率是产生非线性光学现象的主要原因。
+
+因此，光脉冲在光纤中传输时，需要综合考虑色散效应和非线性效应。如此复杂的本构关系，势必会增加求解 Helmholtz 方程的难度，那么不妨做如下假设\cite{Agrawal}
+\begin{enumerate}[label=(\arabic*)]
+    \item 把非线性介电响应处理为线性介电响应的微扰；
+    \item 假定光场的偏振态沿光纤长度方向不变；
+    \item 假定光场是准单色的，即中心频率 $\omega_0$ 远小于频谱宽度 $\Delta\omega$，$\Delta\omega/\omega_0\ll1$。
+\end{enumerate}
+这样一来，讨论光在光纤中的传输问题简化为求解偏振方向的  Helmholtz 方程
+\begin{equation}
+    \nabla^2\widetilde{E}+\varepsilon_r(\omega)k_0^2\widetilde{E}=0
+    \label{eq:Helmholtz}
+\end{equation}
+
+相对介电常数 $\varepsilon_r$ 可以表达为\footnote{线偏振光场假设下，仅需考虑极化率张量的某一分量。}
+\begin{equation}
+    \varepsilon_r(\omega)=1+\widetilde{\chi}_{xx}^{(1)}+\varepsilon_{NL}
+\end{equation}
+其中，线性极化率 $\widetilde{\chi}_{xx}^{(1)}(\omega)$ 是 $\chi_{xx}^{(1)}(t)$ 作 Fourier 变换的结果，非线性介电常数 $\varepsilon_{NL}$ 被处理为常量
+\begin{equation}
+    \varepsilon_{NL}=\frac{3}{4}\chi_{xxxx}^{(3)}\left|\vec{E}(\vec{r},t)\right|^2    
+\end{equation}
+可用介电常量 $\varepsilon_r$ 定义折射率 $\widetilde{n}$ 和吸收系数 $\widetilde{\alpha}$
+\begin{equation}
+    \varepsilon_r=\left(\widetilde{n}+\frac{i\widetilde{\alpha}}{2k_0}\right)^2
+\end{equation}
+介电常数 $\varepsilon_r$ 中含有与光场有关的非线性部分 $\varepsilon_{NL}$，折射率 $\widetilde{n}$ 和吸收系数 $\widetilde{\alpha}$ 描述如下
+\begin{subequations}
+    \begin{equation}
+        \widetilde{n}=n+n_2|E|^2        
+    \end{equation}
+    \begin{equation}
+        \widetilde{\alpha}=\alpha+\alpha_2|E|^2        
+    \end{equation}
+\end{subequations}
+其中，线性折射率 $n$ 和线性吸收系数 $\alpha$ 与线性极化率 $\widetilde{\chi}_{xx}^{(1)}$ 有关；非线性折射率 $n_2$ 和非线性吸收系数 $\alpha_2$ 与三阶极化率 $\chi_{xxxx}^{(3)}$ 有关。通常忽略石英光纤的非线性吸收系数 $\alpha_2$。
+\subsection{脉冲传输}
+\label{sec:Schrodinger}
+研究短脉冲在光纤中的传输问题就是求解 Helmholtz 方程(\ref{eq:Helmholtz})，试探解分离变量如下
+\begin{equation}
+    \widetilde{E}(\vec{r},\omega-\omega_0)=F(x,y)\widetilde{A}(z,\omega-\omega_0)\exp(i\beta_0z)
+\end{equation}
+其中，$F(x,y)$ 是光波模式，$\widetilde{A}(z,\omega)$ 是光波的慢变包络函数，$\beta_0$ 是波数。将试探解代入 Helmholtz 方程(\ref{eq:Helmholtz})，得到光波模式方程(\ref{eq:F(x,y)})和慢变包络函数方程(\ref{eq:A(z)})
+\begin{subequations}
+    \begin{equation}
+        \frac{\partial^2F}{\partial x^2}+\frac{\partial^2F}{\partial y^2}+\left[\varepsilon_r(\omega)k_0^2-\widetilde{\beta}^2\right]F=0
+        \label{eq:F(x,y)}
+    \end{equation}
+    \begin{equation}
+        2i\beta_0\frac{\partial \widetilde{A}}{\partial z}+\left(\widetilde{\beta}^2-\beta_0^2\right)\widetilde{A}=0
+        \label{eq:A(z)}
+    \end{equation}
+\end{subequations}
+包络函数方程(\ref{eq:A(z)})中，需要做慢变包络近似\footnote{行波脉冲的包络在时间和空间上缓慢变化（与波的周期或波长相比）。}，忽略二阶导数 $\partial^2\widetilde{A}/\partial z^2$。
+
+若介质对光场的响应是线性的，那么可用本征函数理论求解(\ref{eq:F(x,y)})。但是，短脉冲在光纤中传输时，介电响应并非线性
+\begin{align}
+    \varepsilon_r(\omega)&=(n+\Delta n)^2\approx n^2+2n\Delta n\\
+    \Delta n(\omega)&=n_2|E|^2+\frac{i\alpha}{2k_0} \nonumber
+\end{align}
+那么可用微扰理论求解脉冲传输问题\cite{Agrawal}。把 $\Delta n$ 处理为 $n$ 的微扰，先用线性响应 $\varepsilon_r=n^2$ 求解(\ref{eq:F(x,y)})得到模式分部 $F(x,y)$ 和对应的本征值 $\beta$；然后加入微扰 $\Delta n$ 的影响，一阶微扰不影响模式分布 $F(x,y)$，但是本征值修正为
+\begin{align}
+    \widetilde{\beta}(\omega)&=\beta(\omega)+\Delta\beta(\omega)\\
+    \Delta\beta(\omega)&=\frac{\omega^2n(\omega)}{c^2\beta(\omega)}\frac{\iint_{-\infty}^{\infty}\Delta n(\omega)|F(x,y)|^2\mathrm{d}x\mathrm{d}y}{\iint_{-\infty}^{\infty}|F(x,y)|^2\mathrm{d}x\mathrm{d}y} \nonumber
+\end{align}
+
+本征值 $\beta(\omega)$ 决定了光波模式，光纤通信领域中它被称为传输常数。传输常数 $\beta$ 主要取决于材料
+\begin{equation}
+    \beta(\omega)\approx n(\omega)\frac{\omega}{c}
+\end{equation}
+传输常数 $\beta(\omega)$ 是光波频率的函数，可对其在中心频率 $\omega_0$ 附近做 Taylor 展开以考察其色散效应
+\begin{subequations}
+    \begin{align}
+        \beta(\omega)=\beta_0+&\beta_1(\omega-\omega_0)+\frac{1}{2}\beta_2(\omega-\omega_0)^2+\frac{1}{6}\beta_3(\omega-\omega_0)^3+\cdots \nonumber \\
+        &\beta_1=\frac{\mathrm{d}\beta}{\mathrm{d}\omega}=\frac{1}{c}\left(n+\frac{\mathrm{d}n}{\mathrm{d}\omega}\right)=\frac{1}{v_g}\\
+        &\beta_2=\frac{1}{c}\left(2\frac{\mathrm{d}n}{\mathrm{d}\omega}+\omega\frac{\mathrm{d}^2n}{\mathrm{d}\omega^2}\right)
+    \end{align}
+\end{subequations}
+其中，参量 $\beta_1$ 与群速度 $v_g$（光脉冲包络移动的速度）有关；参量 $\beta_2$ 描述的就是群速度的色散。群速度色散(group-velocity dispersion，简称 GVD)是造成脉冲展宽的主要原因。
+
+在准单色假设下，中心频率 $\omega_0$ 附近的 $\beta(\omega)$，$\Delta\beta(\omega)$
+\begin{subequations}
+    \begin{align}
+        \beta&=\beta_0+\beta_1(\omega-\omega_0)+\frac{1}{2}\beta_2(\omega-\omega_0)^2\\
+        \Delta\beta&=\Delta\beta_0
+    \end{align}
+\end{subequations}
+有了本征值 $\widetilde{\beta}(\omega)$ 的近似值，就可以把包络方程(\ref{eq:A(z)})近似处理为\cite{Agrawal}
+\begin{equation}
+    \frac{\partial \widetilde{A}}{\partial z}=i[\beta(\omega)+\Delta \beta(\omega)-\beta_0]\widetilde{A}    
+\end{equation}
+对频域中的包络方程进行 Fourier 逆变换，便得到脉冲包络随时间演化的方程
+\begin{equation}
+    \frac{\partial A}{\partial z}+\beta_1\frac{\partial A}{\partial t}+\frac{i\beta_2}{2}\frac{\partial^2 A}{\partial t^2}=i\Delta\beta_0A
+\end{equation}
+根据微扰讨论结果可将脉冲包络在光纤中的传输表达为
+\begin{equation}
+    \frac{\partial A}{\partial z}+\beta_1\frac{\partial A}{\partial t}+\frac{i\beta_2}{2}\frac{\partial^2 A}{\partial t^2}+\frac{\alpha}{2}A=i\gamma(\omega_0)|A|^2A
+\end{equation}
+该方程中，$\alpha$ 是光纤的损耗项，$\beta_1$ 描述的是脉冲群速度，$\beta_2$ 是光纤的色散项，$\gamma$ 包含了光纤的非线性效应。
+
+在研究脉冲传输问题时，通常采用以群速度 $v_g$ 随脉冲移动的参考系，这就要求对脉冲传输方程做延时变换\cite{Agrawal}
+\begin{equation}
+    T=t-z/v_g=t-\beta_1z
+\end{equation}
+忽略光纤损耗 $\alpha$ 的情况下，脉冲包络传输就用{\bfseries 非线性 Schr\"odinger 方程（noline Schr\"odinger equation，简称 NLSE）}描述\footnote{在研究受激散射和或脉宽小于 1 ps 的超短脉冲传输的问题时，需要更高阶的色散项和非线性项对非线性 Schr\"odinger 方程进行修正，本文不再对推广的非线性 Schr\"odinger 方程进行介绍。}
+\begin{equation}
+    i\frac{\partial A}{\partial z}=\frac{\beta_2}{2}\frac{\partial^2A}{\partial T^2}-\gamma|A|^2A
+    \label{eq:Schrodinger}
+\end{equation}

@@ -1,0 +1,29 @@
+\section{结论}
+本文作者对伪谱方法和分步 Fourier 方法进行数值实验（有限差分法的计算时间比较长，笔者没有对其进行完整的数值实验），比较这两种数值方法的计算时间和求解结果（实验结果见附录4）
+\begin{enumerate}[label=(\arabic*)]
+    \item 从求解的结果看，伪谱方法的结果更加准确和稳定，分步 Fourier 方法需要更小的空间和时间步长才能达到满意的结果；
+    \item 从计算耗时来看，分步 Fourier 方法比伪谱方法更快，主要原因是伪谱方法必须通过求解频域的常微分方程，再进行 Fourier 逆变换才能得到时域结果。
+\end{enumerate}
+对三种数值方法求解单光孤子问题进行总结（见表\ref{tab:compare}）
+\begin{table}[htbp]
+    \centering
+    \caption{非线性 Schr\"odinger 方程的三种数值方法求解对比}
+    \label{tab:compare}
+    \begin{tabular}{cccc}
+      \toprule 
+        数值方法 & 计算类型 & 准确程度 & 计算时间 \\
+      \midrule  
+        伪谱方法 & 频域计算 & 准确 & 较快 \\
+        分步 Fourier 方法 & 时域和频域交替计算 & 较准确 & 快 \\
+        有限差分法 & 时域计算 & 较准确 & 非常慢 \\
+      \bottomrule
+    \end{tabular}
+\end{table}
+
+本文研究的问题是非线性 Schr\"odinger 方程的数值求解，着重研究单光孤子的周期性演化过程，在本文的最后对研究课题进行总结
+\begin{enumerate}[label=(\arabic*)]
+    \item 从解析方法看，非线性 Schr\"odinger 方程可以用 IST 方法求解；
+    \item 从物理行为看，散射问题的离散本征值对应束缚态，其势场就是光孤子解；
+    \item 从数值方法看，非线性 Schr\"odinger 方程可以用分步 Fourier 方法、伪谱方法、有限差分法进行求解。
+\end{enumerate}
+其实，非线性 Schr\"odinger 方程的研究方法、孤子概念都是从 KdV 方程迁移过来。就孤子问题来讲，还有很多有意思的课题，比如孤子稳定性、孤子相互作用等问题。

@@ -1,0 +1,166 @@
+% !Mode:: "TeX:UTF-8"
+% !TeX encoding = UTF8
+% 用XeLaTeX编译，直接支持中文
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 桂林理工大学本科生学位论文 LaTeX 模版
+%% 2020-10-10 v1.0
+%% 作者：胡光辉
+%% E-mail: guanghui.hu@me.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{GLUTthesis}
+\usepackage{lscape}
+\usepackage{float}
+\usepackage{multicol}
+\addbibresource{GLUTthesis.bib}
+
+\include{content/info}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 封面
+% -----------------------------------------------%
+\makecoverpage
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 前置部分的页眉页脚设置
+% -----------------------------------------------%
+% 前置部分用罗马数字单独编连续码（封面除外）。
+\pagenumbering{Roman} % 大写罗马字母
+\setcounter{page}{1} % 从1开始编号页码
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 声明页
+% -----------------------------------------------%
+\announcement
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 中文摘要
+% -----------------------------------------------%
+\addcontentsline{toc}{section}{摘\quad 要}
+\include{content/abstractcn}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 英文摘要
+% -----------------------------------------------%
+\addcontentsline{toc}{section}{Abstract}
+\include{content/abstracten}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 目录
+% -----------------------------------------------%
+{
+\renewcommand{\contentsname}{\hfill \bfseries \zihao{3} 目\quad 录\hfill}  
+	\renewcommand*{\baselinestretch}{1.2}   % 行间距
+    \tableofcontents
+}
+\newpage
+% 去掉页眉章节序号后面的“.”
+\renewcommand{\sectionmark}[1]{\markright{\thesection~ #1}}
+
+
+\renewcommand{\headrulewidth}{1pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 正文和后置部分的页眉页脚设置
+% -----------------------------------------------%
+% 正文和后置部分用阿拉伯数字编连续码。
+\setcounter{page}{1} % 重置页码编号
+\pagenumbering{arabic} % 设置页码编号为阿拉伯数字
+% 定义页眉页脚 %
+\newcommand{\makeheadrule}{%
+    \makebox[-3pt][l]{\rule[.7\baselineskip]{\headwidth}{0.5pt}}
+    \rule[0.85\baselineskip]{\headwidth}{1.5pt}\vskip-.8\baselineskip}
+\makeatletter
+\renewcommand{\headrule}{%
+    {\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi
+     \makeheadrule}}
+% -----画单隔线 ------------
+\renewcommand{\headrulewidth}{0.5pt}    % 在页眉下画一个0.5pt宽的分隔线
+\renewcommand{\footrulewidth}{0pt}      % 在页脚不画分隔线。
+% -----设置页眉样式 ---------
+\newcommand{\headstyle}{
+	\fancyhead[C]{\color{black} \bfseries \texttt{\zihao{-3} 桂\hspace{0.2em}林\hspace{0.2em}理\hspace{0.2em}工\hspace{0.2em}大\hspace{0.2em}学\hspace{0.2em}本\hspace{0.2em}科\hspace{0.2em}毕\hspace{0.2em}业\hspace{0.2em}设\hspace{0.2em}计\hspace{0.2em}{\zihao{2}$\cdot$}\hspace{0.2em}论\hspace{0.2em}文}}
+}
+% -----设置页脚样式 ---------
+\newcommand{\footstyle}{\fancyfoot[C]{\thepage}}
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhf{} %清空原有样式
+\headstyle
+\footstyle
+% ------ 定义一种新的格式叫做main ------------
+\fancypagestyle{main}{%
+    \pagestyle{fancyplain} 
+	\fancyhf{} %清空原有样式
+	\headstyle
+	\footstyle
+}
+
+% 可以使用include命令导入tex文件，从而避免过多修改本文件。
+
+% 论文正文是主体，主体部分应从另页右页开始，每一章应另起页。一般由序号标题、文字叙述、图、表格和公式等五个部分构成。
+
+% 重新设置正文行间距，因为前置部分设置时候行间距被改过
+\renewcommand*{\baselinestretch}{1.0}   % 几倍行间距
+\setlength{\baselineskip}{20pt}         % 基准行间距
+
+% 正文
+% \include{content/content}
+
+\include{content/introduction}
+
+\include{content/Schrodinger}
+
+\include{content/soliton}
+
+\include{content/numerical}
+
+\include{content/conclusion}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 临时标签，用于编译时追踪正文末尾
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 后续内容，标题三号黑体居中，章节无编号
+% --------------------------------------------%
+
+% https://www.zhihu.com/question/29413517/answer/44358389 %
+% 说明如下：
+% secnumdepth 这个计数器是 LaTeX 标准文档类用来控制章节编号深度的。在 article 中，这个计数器的值默认是 3，对应的章节命令是 \subsubsection。也就是说，默认情况下，article 将会对 \subsubsection 及其之上的所有章节标题进行编号，也就是 \part, \section, \subsection, \subsubsection。LaTeX 标准文档类中，最大的标题是 \part。它在 book 和 report 类中的层级是「-1」，在 article 类中的层级是「0」。这里，我们在调用 \appendix 的时候将计数器设置为 -2，因此所有的章节命令都不会编号了。不过，一般还是会保留 \part 的编号的。所以在实际使用中，将它设置为 0 就可以了。
+
+% 在修改过程中请注意不要破环命令的完整性
+
+\renewcommand\appendix{\setcounter{secnumdepth}{-2}}
+\appendix
+
+% 主文件有代码去掉页眉章节编号的“.”，但这会因为bug导致无编号章节显示一个错误编号，所以这里在无编号章节之前再次重定义sectionmark。
+%\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+% section 标题从这里往后改为三号居中
+\titleformat{\section}{\centering \bfseries \zihao{3}}{\thesection}{1em}{}
+
+
+\include{content/thanks}
+
+% \section{参考文献} % bibliography会自动显示参考文献四个字
+\addcontentsline{toc}{section}{参考文献} % 由于参考文献不是section，这句把参考文献加入目录
+% \nocite{*} % 该命令用于显示全部参考文献，即使文中没引用
+% cls文件中已经引入package，这里不需要调用 \bibliographystyle 了。
+% \bibliographystyle{gbt7714-2005}
+% \bibliography{thesis-references}
+\printbibliography
+\newpage
+
+% 致谢应该在参考文献的后面，不编章号，而附录应该位于致谢后。
+
+
+\include{content/additional}
+
+\end{document}
