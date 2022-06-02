@@ -1,4 +1,4 @@
-close all; clear all; clc
+close all; clear all; cl
 
 %% ≤Œ ˝…Ë÷√
 Z_max = 4; T_max = 10;
