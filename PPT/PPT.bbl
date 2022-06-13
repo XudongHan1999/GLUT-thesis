@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+
+\bibitem{Agrawal}
+P.Agrawal Govind.
+\newblock {\em 非线性光纤光学}.
+\newblock 电子工业出版社, 2019.
+
+\bibitem{Hasegawa}
+Hasegawa Akira and Tappert Frederick.
+\newblock Transmission of stationary nonlinear optical pulses in dispersive
+  dielectric fibers. i. anomalous dispersion.
+\newblock {\em Applied Physics Letters}, 23(3):142--144, 1973.
+
+\bibitem{zhangxiao}
+张晓.
+\newblock {\em Matlab 微分方程高效解法：谱方法原理与实现}.
+\newblock 机械工业出版社, 2015.
+
+\bibitem{liangkunmiao}
+梁昆淼, 刘法, and 缪国庆.
+\newblock {\em 数学物理方法}.
+\newblock 高等教育出版社, 2010.
+
+\bibitem{Taha}
+R.Taha Thiab and J.Ablowitz Mark.
+\newblock Analytical and numerical aspects of certain nonlinear evolution
+  equations. ii. numerical, nonlinear schrödinger equation.
+\newblock {\em Journal of Computational Physics}, 55(2):203--230, 1984.
+
+\end{thebibliography}

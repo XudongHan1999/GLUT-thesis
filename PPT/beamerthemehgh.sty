@@ -1,0 +1,254 @@
+\ProvidesPackage{beamerthemehgh}[2020/03/01]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 胡光辉专用 LaTeX Beamer 模版 
+% 版本 1.0
+% 2020年3月30日
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 设置
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Requirement
+\RequirePackage{tikz}
+
+%\RequirePackage{tabu}
+%\RequirePackage{pdfrender}
+
+
+%\RequirePackage{ifxetex}
+%\RequirePackage{textcase}
+%\ifxetex
+%   \RequirePackage{microtype}
+%\else
+%   \RequirePackage[tracking=true]{microtype}
+%\fi
+
+\setbeamertemplate{navigation symbols}{}
+% Itemize items: default (triangle), circle, square, ball
+\setbeamertemplate{itemize items}[circle]
+% Enumerate items: default, circle, square, ball
+\setbeamertemplate{enumerate items}[circle]
+% Outline: default, sections numbered, subsections numbered, circle, square, ball, ball unnumbered
+\setbeamertemplate{sections/subsections in toc}[circle]
+% General blocks: 
+\setbeamertemplate{blocks}[rounded=false]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 图片设定
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{graphicx}
+\RequirePackage{graphbox}
+\RequirePackage{wrapfig}
+\graphicspath{{./figs/}{./figure/}{./figures/}{./image/}{./images/}{./graphics/}{./graphic/}{./pictures/}{./picture/}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 颜色
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义颜色
+
+\definecolor{hghbluedark}{RGB}{1,128,148}% RoyalBlue:65,105,225; teal:1,128,148
+\definecolor{hghblack}{RGB}{0,0,0}
+\definecolor{hghwhite}{RGB}{255,255,255}
+\definecolor{hghred}{RGB}{255,99,71}
+\definecolor{hghblue}{RGB}{67,128,235}%100,149,237}
+\definecolor{hghgreen}{RGB}{72,144,96}
+\definecolor{hghyellow}{RGB}{238,180,34}
+\definecolor{hghpurple}{RGB}{147,112,219}
+\definecolor{hghgrey}{RGB}{244,228,188}
+\definecolor{hghlightgrey}{RGB}{211,211,211}
+
+% 设置颜色
+\setbeamercolor*{normal text}{fg=hghblack}
+\setbeamercolor*{alerted text}{fg=hghred}
+\setbeamercolor*{example text}{fg=hghgreen}
+\setbeamercolor*{structure}{fg=hghbluedark}
+\setbeamercolor*{background canvas}{parent=normal text}
+
+\setbeamercolor*{title page header}{fg=hghbluedark}
+\setbeamercolor*{author}{fg=hghred}
+\setbeamercolor*{institute}{fg=hghbluedark}
+\setbeamercolor*{date}{fg=hghbluedark}
+\setbeamercolor*{background canvas}{bg=hghwhite} %主题背景颜色
+\setbeamercolor*{section in head/foot}{bg=hghbluedark, fg=hghwhite}
+\setbeamercolor*{frametitle}{fg=hghbluedark, bg=hghlightgrey}
+
+\setbeamercolor*{block title}{bg=hghblue, fg=hghwhite}%盒子标题颜色
+\setbeamercolor*{block body}{bg=hghlightgrey, fg=hghblack}%盒子内容颜色
+\setbeamercolor*{block title alerted}{bg=hghred, fg=hghwhite}%
+\setbeamercolor*{block body alerted}{bg=hghlightgrey, fg=hghblack}%
+\setbeamercolor*{block title example}{bg=hghgreen, fg=hghwhite}%
+\setbeamercolor*{block body example}{bg=hghlightgrey, fg=hghblack}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 字体
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 设置字体大小
+\setbeamerfont*{title}{size=\Large}
+\setbeamerfont*{author}{size=\large}
+\setbeamerfont*{date}{size=\normalsize}
+\setbeamerfont*{institute}{size=\normalsize}
+\setbeamerfont*{frametitle}{size=\Large}
+\setbeamerfont*{framesubtitle}{size=\large}
+\setbeamerfont*{section title}{size=\huge}
+
+% 设置字体
+\setbeamerfont*{alerted text}{shape=\bfseries}
+\setbeamerfont*{block title}{shape=\bfseries}
+\setbeamerfont*{block title alerted}{shape=\bfseries}
+\setbeamerfont*{caption name}{size=\small}
+\setbeamerfont*{caption}{size=\small}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 内部模版
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\defbeamertemplate*{footline}{hgh}
+{
+    \begin{beamercolorbox}[sep=0.6em]{section in head/foot}
+        \hskip5.5mm \insertshorttitle \hfill\usebeamerfont{page number in head/foot}
+        \insertframenumber\,/\,\inserttotalframenumber \hskip6mm\hfill
+    \end{beamercolorbox}
+}
+
+% Title page 首页
+
+\defbeamertemplate*{title page}{hgh}[1][] {
+  \centering
+  \includegraphics[width=0.672\paperheight,height=0.21\paperheight,keepaspectratio]{glut-logo}
+  \vskip5mm%logo和标题之间的距离
+  \hfill
+  \begin{beamercolorbox}[wd=0.66\paperwidth, center, sep=8pt, #1]{title page header}
+    %\usebeamerfont{title}\inserttitle\par%
+    {\usebeamerfont{title}\inserttitle\par}%
+        \ifx\insertsubtitle
+            \@empty
+        \else
+            \vskip0.25em
+            %{\usebeamerfont{subtitle}\insertsubtitle\par}%
+  \end{beamercolorbox}%
+  \hfill\hfill
+  \vskip6mm%标题和作者之间的距离
+  \begin{beamercolorbox}[center]{author}
+    \usebeamerfont{author}\insertauthor%作者
+  \end{beamercolorbox}
+   \vskip5mm%作者和单位之间的距离
+  \begin{beamercolorbox}[center]{institute}
+    \usebeamerfont{institute}\insertinstitute%单位
+  \end{beamercolorbox}
+%  \vskip5mm
+%  \begin{beamercolorbox}[center]{date}
+%    \usebeamerfont{date}\insertdate%
+%  \end{beamercolorbox}
+  \vfill
+}
+% 定义首页背景
+\setbeamertemplate{background} {
+  \begin{tikzpicture}
+    \useasboundingbox (0, 0) rectangle(\the\paperwidth,\the\paperheight);
+    \ifnum\thepage=1\relax%
+      % The footer 页脚
+      \node[anchor=east] at (16.4, 5mm) {
+        \includegraphics[height=0.11\paperheight]{hgh-logo}};
+      % The footer's content 页脚内容
+      \node[anchor=west] at (0, 2.5mm) {
+        \textcolor{hghbluedark}{\tiny{\hskip6mm\insertdate}}};
+    \fi
+  \end{tikzpicture}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 页眉节导航栏
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength\hgh@sectionboxwidth
+\newlength\hgh@sectionboxheight
+\newbox\hgh@sectionbox
+\newbox\hgh@sectionboxbox
+
+\usesectionheadtemplate
+  {\hfill
+    \setbox\hgh@sectionbox=\hbox{\insertsectionhead}%
+    \hgh@sectionboxwidth=\wd\hgh@sectionbox
+    \advance\hgh@sectionboxwidth by 7.5mm %4pt
+    \setbox\hgh@sectionbox=\hbox{\pgfinterruptpicture t \endpgfinterruptpicture}%
+    \hgh@sectionboxheight=\ht\hgh@sectionbox
+    \advance\hgh@sectionboxheight by 4pt
+    \begin{tikzpicture}
+      \useasboundingbox (-0.5\hgh@sectionboxwidth, 0pt) rectangle (0.5\hgh@sectionboxwidth, \hgh@sectionboxheight);
+      \draw[anchor=base] (0pt, 2pt) node {%
+        \mode<presentation>{\color{hghwhite}}% 当前节标题颜色
+      	\textbf{\insertsectionhead}};
+    \end{tikzpicture}
+  }
+  {\hfill
+    \setbox\hgh@sectionbox=\hbox{\pgfinterruptpicture\insertsectionhead\endpgfinterruptpicture}%
+    \hgh@sectionboxwidth=\wd\hgh@sectionbox
+    \advance\hgh@sectionboxwidth by 7.5mm %4pt
+    \setbox\hgh@sectionboxbox=\hbox{\pgfinterruptpicture t \endpgfinterruptpicture}%
+    \hgh@sectionboxheight=\ht\hgh@sectionboxbox
+    \advance\hgh@sectionboxheight by 4pt
+    \begin{tikzpicture}
+      \useasboundingbox (-0.5\hgh@sectionboxwidth, 0pt) rectangle (0.5\hgh@sectionboxwidth, \hgh@sectionboxheight);
+      \draw[anchor=base] (0pt, 2pt) node {%
+        \color{hghlightgrey}% 其余节标题的颜色
+        \insertsectionhead};
+    \end{tikzpicture}
+  }
+  
+%~~~~~~~~~~~~~~~~~~~~~
+% Headline
+%~~~~~~~~~~~~~~~~~~~~~
+\defbeamertemplate*{headline}{hgh}
+{%
+  \leavevmode%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,dp=1.125ex]{section in head/foot}
+    \insertsectionnavigationhorizontal{\paperwidth}{}{}  
+  \end{beamercolorbox}%
+  \mode<handout>{{\hskip-\paperwidth\color{gray}\rule[-1pt]{\paperwidth}{0.5pt}}}%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 外部模版
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Frame title
+
+\defbeamertemplate*{frametitle}{hgh}[1][]
+{
+  \vspace{-0.4mm}
+  \begin{beamercolorbox}[sep=0.15cm,wd=\paperwidth,leftskip=5mm,rightskip=5mm]{frametitle}
+    \usebeamerfont{frametitle}%
+    \insertframetitle
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}：\insertframesubtitle}%\hspace{1em}
+      \fi
+    }%
+    \par
+  \end{beamercolorbox}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 其它设置
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%减少正文与头部的距离
+%\addtobeamertemplate{frametitle}{}{\vspace*{-0.5cm}}
+
+\renewcommand\tablename{\color{hghbluedark}表\the\value{table}}
+\renewcommand\figurename{\color{hghbluedark}图\the\value{figure}}
+
+\RequirePackage{zhnumber}
+\renewcommand\sectionname{\color{hghbluedark}第\zhnum{section}节}
+
+%%参考文献小标
+\newcommand{\upcite}[1]
+{\textsuperscript{\cite{#1}}}
+
+\mode<all>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 到此结束
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

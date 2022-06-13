@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{研究背景}{3}{0}{1}
+\beamer@sectionintoc {2}{数值方法}{7}{0}{2}
+\beamer@sectionintoc {3}{求解结果}{14}{0}{3}
+\beamer@sectionintoc {4}{结果总结}{18}{0}{4}
+\beamer@sectionintoc {5}{附\hskip 1em\relax 录}{22}{0}{5}
