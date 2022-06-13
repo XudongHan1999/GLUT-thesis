@@ -13,7 +13,7 @@
     \item 实现离散数据序列时域与频域的互相转换；
     \item 实现常微分方程的数值求解。
 \end{enumerate}
-快速 Fourier 变换（fast Fourier transform，简称 FFT）可以很方便地实现离散 Fourier 变换（MATLAB 提供了快速 Fourier 变换的指令 fft 和 ifft）；通常用 Runge-Kutta 方法求解常微分方程的数值解（MATLAB 中集成了非常多用 Rugge-Kutta 方法设计的 ODE 求解器，比如最常用的 ode45）\cite{Anne}。因此，应用伪谱方法求解偏微分方程在技术上是可行的，求解步骤也十分清楚\cite{zhangxiao}
+快速 Fourier 变换（fast Fourier transform，简称 FFT）可以很方便地实现离散 Fourier 变换（MATLAB 提供了快速 Fourier 变换的指令 fft 和 ifft）；通常用 Runge-Kutta 方法求解常微分方程的数值解（MATLAB 中集成了非常多用 Runge-Kutta 方法设计的 ODE 求解器，比如最常用的 ode45）\cite{Anne}。因此，应用伪谱方法求解偏微分方程在技术上是可行的，求解步骤也十分清楚\cite{zhangxiao}
 \begin{enumerate}[label=(\arabic*)]
     \item 对偏微分方程做时域（或空间域）的 Fourier 变换，再将其离散化；
     \item 调用 ODE 求解器对离散化的常微分方程进行求解；
